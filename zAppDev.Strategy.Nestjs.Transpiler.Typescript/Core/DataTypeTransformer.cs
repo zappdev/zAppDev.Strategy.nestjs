@@ -49,7 +49,7 @@ namespace zAppDev.Strategy.Nestjs.Transpiler.Typescript.Core
 
         public virtual string GetDataTypeNameFromCollection(TypeClass dt)
         {
-            return $"Array<{Transform(dt)}>";
+            return $"{Transform(dt)}[]";
         }
 
         public virtual string GetDataTypeName(ClassContainer typeClass, bool nonNullable = false)
@@ -119,7 +119,7 @@ namespace zAppDev.Strategy.Nestjs.Transpiler.Typescript.Core
             if (typeClass.IsChar()) return "''";
             if (typeClass.IsNumber()) return "0";
             if (typeClass.IsBool()) return "false";
-            if (typeClass.IsGuid()) return "System.Guid.NewGuid()";
+            if (typeClass.IsGuid()) return "null";
             if (typeClass.IsDate())
             {
                 return dateAsNull
