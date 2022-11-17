@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CLMS.AppDev.ApplicationServices" Version="8.1.22" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\zAppDev.Strategy.Nestjs.Transpiler.Typescript\zAppDev.Strategy.Nestjs.Transpiler.Typescript.csproj" />
+    <ProjectReference Include="..\zAppDev.Strategy.Utilities\zAppDev.Strategy.Utilities.csproj" />
+  </ItemGroup>
+
+</Project>
