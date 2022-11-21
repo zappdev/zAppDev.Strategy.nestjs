@@ -20,6 +20,9 @@
       ],
       "@service/*": [
         "src/service/*"
+      ],
+      "@dto/*": [
+        "src/dto/*"
       ]
     },
     "incremental": true,
