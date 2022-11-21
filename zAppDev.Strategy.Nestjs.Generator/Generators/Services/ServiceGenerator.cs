@@ -1,7 +1,6 @@
 ﻿using CLMS.AppDev.MetaModels.Interface;
 using zAppDev.Strategy.Transpiler.Base.Core;
 using System.Text;
-using zAppDev.Strategy.Nestjs.Generator.Language.Core;
 using zAppDev.Strategy.Utilities.Transformer;
 using zAppDev.Strategy.Nestjs.Transpiler.Typescript.Factory;
 
@@ -9,12 +8,10 @@ namespace zAppDev.Strategy.Nestjs.Generator.Generators.Services
 {
     internal class ServiceGenerator : TypescriptGenerator<Interface>
     {
-        private DataTypeTransformer _datatypeParser;
         private IFunctionTransformer _codeTransformer;
 
         public ServiceGenerator(EngineSession session)
         {
-            _datatypeParser = new DataTypeTransformer();
             _codeTransformer = new TypescriptTranspilerFactory().BuildCompiler(session.Config.Solution, new Strategy.Transpiler.Base.Models.CompilerOptions
             {
 
@@ -58,7 +55,7 @@ constructor(private repository: EntityRepository) {{}}
             var methodDetails = op.ImplementationDetails as ExposeInterfaceMethodDetails;
             var returnDatatype = "any";// _datatypeParser.Transform(op.Signature.DataType);
             var parameters = string.Join(", ", 
-                op.Signature.Parameters.Select(p => $"{p.Name}: {_datatypeParser.Transform(p.DataType)}")
+                op.Signature.Parameters.Select(p => $"{p.Name}: {_codeTransformer.DataTypeTransformer.Transform(p.DataType)}")
             );
 
             var temp = string.Join(", ",

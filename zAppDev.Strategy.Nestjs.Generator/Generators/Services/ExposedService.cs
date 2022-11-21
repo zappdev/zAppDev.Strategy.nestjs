@@ -16,9 +16,9 @@ namespace zAppDev.Strategy.Nestjs.Generator.Generators.Services
         public ExposedService(EngineSession session)
         {
             _session = session;
-            _apiGenerator = new APIGenerator();
+            _apiGenerator = new APIGenerator(session);
             _serviceGenerator = new ServiceGenerator(session);
-            _dtoGenerator = new DTOGenerator();
+            _dtoGenerator = new DTOGenerator(session);
         }
 
         public void Generate()

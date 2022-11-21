@@ -8,7 +8,7 @@ namespace zAppDev.Strategy.nestjs
     {
         static void Main()
         {
-            string userEmail = "nest@zappdev.com"; //"d.moudilos@clmsuk.com";
+            string userEmail = "nest@zappdev.com";
             string appName = "NestSample";
             int appId = 23354;
 

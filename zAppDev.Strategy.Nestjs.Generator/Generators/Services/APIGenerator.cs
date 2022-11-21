@@ -1,17 +1,22 @@
 ﻿using CLMS.AppDev.MetaModels.Interface;
 using System.Text;
-using zAppDev.Strategy.Nestjs.Generator.Language.Core;
+using zAppDev.Strategy.Nestjs.Transpiler.Typescript.Factory;
+using zAppDev.Strategy.Transpiler.Base.Core;
 using zAppDev.Strategy.Utilities.Transformer;
 
 namespace zAppDev.Strategy.Nestjs.Generator.Generators.Services
 {
     internal class APIGenerator : TypescriptGenerator<Interface>
     {
-        private DataTypeTransformer _datatypeParser;
+        private IDataTypeTransformer _datatypeTransformer;
 
-        public APIGenerator()
+        public APIGenerator(EngineSession session)
         {
-            _datatypeParser = new DataTypeTransformer();
+            _datatypeTransformer = new TypescriptTranspilerFactory()
+                    .BuildCompiler(session.Config.Solution, new Strategy.Transpiler.Base.Models.CompilerOptions
+                    {
+
+                    }).DataTypeTransformer;
         }
 
         public override string GetFilename(Interface model)

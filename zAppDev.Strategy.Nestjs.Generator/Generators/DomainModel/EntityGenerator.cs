@@ -1,13 +1,25 @@
 ﻿using CLMS.Lang.Model;
 using CLMS.Lang.Model.Structs;
 using System.Text;
-using zAppDev.Strategy.Nestjs.Generator.Language.Core;
+using zAppDev.Strategy.Nestjs.Transpiler.Typescript.Factory;
+using zAppDev.Strategy.Transpiler.Base.Core;
 using zAppDev.Strategy.Utilities.Transformer;
 
 namespace zAppDev.Strategy.Nestjs.Generator.Generators.DomainModel
 {
     internal class EntityGenerator : TypescriptGenerator<TypeClass>
     {
+        private IDataTypeTransformer _datatypeTransformer;
+
+        public EntityGenerator(EngineSession session)
+        {
+            _datatypeTransformer = new TypescriptTranspilerFactory()
+                    .BuildCompiler(session.Config.Solution, new Strategy.Transpiler.Base.Models.CompilerOptions
+                    {
+
+                    }).DataTypeTransformer;
+        }
+
         public override string GetFilename(TypeClass model)
         {
             return $"{model.Name}.entity.ts";
@@ -34,8 +46,6 @@ export class {model.Name} {{
 
         private string GenerateProperties(TypeClass model)
         {
-            var datatypeTransformer = new DataTypeTransformer();
-
             var propertiesCode = new StringBuilder();
 
             foreach (var property in model.GetPrimitiveProperties())
@@ -49,7 +59,7 @@ export class {model.Name} {{
                     propertiesCode.AppendLine($"@Column()");
                 }
 
-                propertiesCode.AppendLine($"{property.Name}?: {datatypeTransformer.Transform(property.DataType)};");
+                propertiesCode.AppendLine($"{property.Name}?: {_datatypeTransformer.Transform(property.DataType)};");
                 propertiesCode.AppendLine();
             }
 

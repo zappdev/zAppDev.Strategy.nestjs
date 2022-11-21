@@ -13,7 +13,7 @@ namespace zAppDev.Strategy.Nestjs.Generator.Generators.DomainModel
         public DomainModelService(EngineSession session)
         {
             _session = session;
-            _entityGenerator = new EntityGenerator();
+            _entityGenerator = new EntityGenerator(_session);
         }
 
         public void Generate()
