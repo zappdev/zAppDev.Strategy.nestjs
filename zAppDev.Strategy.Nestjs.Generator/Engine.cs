@@ -1,4 +1,5 @@
-﻿using zAppDev.Strategy.Nestjs.Generator.Generators.DomainModel;
+﻿using System.Configuration;
+using zAppDev.Strategy.Nestjs.Generator.Generators.DomainModel;
 using zAppDev.Strategy.Nestjs.Generator.Generators.Services;
 using zAppDev.Strategy.Utilities;
 
@@ -42,8 +43,7 @@ namespace zAppDev.Strategy.Nestjs.Generator
                 return;
             }
 
-            //TODO: not hardcoded directory!!
-            FileSystem.SyncronizePaths("D:\\DEV\\cfs\\zAppDev.Strategy.nestjs\\StaticFiles", session.OutputPath, "*.*");
+            FileSystem.SyncronizePaths(ConfigurationManager.AppSettings["zappdev:staticFilesPath"], session.OutputPath, "*.*");
         }
     }
 }
