@@ -1,3 +1,7 @@
+<!--
+Copyright (c) . All rights reserved.
+Licensed under the . See LICENSE file in the project root for full license information.-->
+
 <ExposedApi DateCreated="2/11/2022" Model_Name="Customer" Model_Description="" Version="0.1.0" Comments="">
   <Operations>
     <Operation Verb="Post" Path="Create" ReturnDataType="void" Name="Create" Description="Creates a new Customer" AllowAnonymousUsers="False" AllowAllAuthenticated="True" EnableAccessLog="False" ResponseSample="" RequestSample="" ReadOnly="false" AllowPermisssions="" ApplicationTags="">
@@ -6,6 +10,7 @@
       </Parameters>
       <Code>function void Create(Domain.Customer newCustomer) {
     newCustomer.Id = 0;
+    newCustomer.RegistrationDate = DateTime.Now();
     newCustomer.Save();
 }</Code>
       <CachingOptions CachePerUser="false" OperationIsCached="false" OverrideDefaultCachingSettings="false" UseCustomExpirationMethod="false" HeadersToInlcudeInCacheKey="" ExpirationDays="0" ExpirationHours="0" ExpirationMinutes="3" ExpirationSeconds="0" ExpirationMilliseconds="0" CacheMode="None">function TimeSpan Expiration(
@@ -93,14 +98,35 @@
     </Operation>
   </Operations>
   <DataContracts>
+    <DataContract Name="" Class="Domain.Address" BaseClass="">
+      <Members>
+        <Member Name="Id" DataType="int" Checked="False" />
+        <Member Name="Country" DataType="string" Checked="True" />
+        <Member Name="Region" DataType="string" Checked="True" />
+        <Member Name="Town" DataType="string" Checked="True" />
+        <Member Name="PostalCode" DataType="string" Checked="False" />
+        <Member Name="Road" DataType="string" Checked="False" />
+        <Member Name="Number" DataType="int" Checked="False" />
+      </Members>
+    </DataContract>
     <DataContract Name="" Class="Domain.Customer" BaseClass="">
       <Members>
         <Member Name="Id" DataType="int" Checked="False" />
         <Member Name="Name" DataType="string" Checked="True" />
         <Member Name="Surname" DataType="string" Checked="True" />
-        <Member Name="RegistrationDate" DataType="DateTime" Checked="True" />
-        <Member Name="MainAddress" DataType="Domain.Address" Checked="False" />
+        <Member Name="RegistrationDate" DataType="DateTime" Checked="False" />
+        <Member Name="MainAddress" DataType="Domain.Address" Checked="True" />
         <Member Name="Orders" DataType="Collection[Domain.Order]" Checked="False" />
+      </Members>
+    </DataContract>
+    <DataContract Name="" Class="Domain.Order" BaseClass="">
+      <Members>
+        <Member Name="Id" DataType="int" Checked="False" />
+        <Member Name="DatePlaced" DataType="DateTime" Checked="True" />
+        <Member Name="TotalPrice" DataType="decimal" Checked="True" />
+        <Member Name="VAT" DataType="decimal" Checked="False" />
+        <Member Name="Customer" DataType="Domain.Customer" Checked="False" />
+        <Member Name="Lines" DataType="Collection[Domain.OrderLine]" Checked="False" />
       </Members>
     </DataContract>
   </DataContracts>

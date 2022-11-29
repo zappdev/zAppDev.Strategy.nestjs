@@ -1,3 +1,7 @@
+<!--
+Copyright (c) . All rights reserved.
+Licensed under the . See LICENSE file in the project root for full license information.-->
+
 <BusinessObject DateCreated="26/10/2022" Model_Name="CustomerBO" Model_Description="" Version="" Comments="" Model_Creator="">
   <Associations>
     <Association ModelName="CustomerBO" Class1="Customer" Class2="Address" Role1="Customer" Role2="MainAddress" Multiplicity1="ZeroOrOne" Multiplicity2="One" Navigable1="false" Navigable2="true" IsExternal="false" Persisted="true" OrderByProperty1="" OrderByDirection1="Asc" OrderByProperty2="" OrderByDirection2="Asc" OnDelete1="Dissasociate" OnDelete2="CascadeDelete" IsShadow="false" IsInherited="false" AllowedExtensions="" StorageMedium="FileSystem" MaxFileSize="1000" UnlimitedFileSize="true" AllowAllExtensions="true">
