@@ -27,7 +27,8 @@ namespace zAppDev.Strategy.Nestjs.Generator.Generators.Services
         {
             return @"import { Injectable } from '@nestjs/common';
 import * as Domain from '@entity/index';
-import { EntityRepository } from '@framework/service/entityRepository.service';";
+import { EntityRepository } from '@framework/service/entityRepository.service';
+import * as moment from 'moment';";
         }
 
         protected override string RenderClass(Interface model)
